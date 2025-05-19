@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#111827"/>
+  
+  <!-- Animated Circles -->
+  <g fill="#3b82f6" opacity="0.1">
+    <circle cx="200" cy="200" r="50">
+      <animate attributeName="r" values="50;60;50" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="400" r="70">
+      <animate attributeName="r" values="70;80;70" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="300" r="40">
+      <animate attributeName="r" values="40;50;40" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Floating Code Elements -->
+  <g fill="#60a5fa" opacity="0.15">
+    <text x="100" y="150" font-family="monospace" font-size="30">
+      <animate attributeName="y" values="150;160;150" dur="2s" repeatCount="indefinite"/>
+      &lt;code&gt;
+    </text>
+    <text x="600" y="450" font-family="monospace" font-size="30">
+      <animate attributeName="y" values="450;440;450" dur="2.5s" repeatCount="indefinite"/>
+      {dev}
+    </text>
+    <text x="300" y="300" font-family="monospace" font-size="30">
+      <animate attributeName="y" values="300;310;300" dur="3s" repeatCount="indefinite"/>
+      (web)
+    </text>
+  </g>
+  
+  <!-- Connecting Lines -->
+  <g stroke="#60a5fa" stroke-width="2" opacity="0.2">
+    <path d="M100,150 L300,300 L600,450" fill="none">
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M600,150 L300,300 L100,450" fill="none">
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Hero Text -->
+  <text x="320" y="300" font-family="Arial" font-size="80" fill="#60a5fa" text-anchor="middle">
+    <tspan x="320" y="280">ADITYA</tspan>
+    <tspan x="320" y="360">KAMBLE</tspan>
+  </text>
+</svg> 
