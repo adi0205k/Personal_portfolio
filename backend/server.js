@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./config/db');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const app = express();
@@ -43,7 +44,6 @@ async function initializeDatabase() {
 // Initialize database
 initializeDatabase();
 
-// Routes
 // Contact form submission
 app.post('/api/contact', async (req, res) => {
     try {
@@ -100,8 +100,9 @@ app.post('/api/admin/login', async (req, res) => {
         }
 
         const user = users[0];
-        // In production, use bcrypt to compare passwords
-        if (password !== user.password) {
+        // Use bcrypt to compare passwords
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid credentials' 
@@ -122,7 +123,41 @@ app.post('/api/admin/login', async (req, res) => {
     }
 });
 
+// Endpoint to create a new admin user with hashed password (for setup/testing)
+app.post('/api/admin/register', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        // Check if user already exists
+        const [users] = await db.query(
+            'SELECT * FROM admin_users WHERE username = ?',
+            [username]
+        );
+        if (users.length > 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'Username already exists'
+            });
+        }
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await db.query(
+            'INSERT INTO admin_users (username, password) VALUES (?, ?)',
+            [username, hashedPassword]
+        );
+        res.status(201).json({
+            success: true,
+            message: 'Admin user created successfully'
+        });
+    } catch (error) {
+        console.error('Error creating admin user:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error creating admin user'
+        });
+    }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-}); 
+});
