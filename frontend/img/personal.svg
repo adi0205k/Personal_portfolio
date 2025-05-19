@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#27ae60"/>
+  
+  <!-- Decorative Elements -->
+  <g fill="#2ecc71">
+    <!-- Code Brackets -->
+    <path d="M200,200 L250,300 L200,400 L300,400 L350,300 L300,200 Z"/>
+    <path d="M450,200 L500,300 L450,400 L550,400 L600,300 L550,200 Z"/>
+  </g>
+  
+  <!-- Circuit-like Lines -->
+  <g stroke="white" stroke-width="3" opacity="0.2">
+    <path d="M100,100 L700,100 L700,500 L100,500 Z" fill="none"/>
+    <path d="M200,200 L600,200 L600,400 L200,400 Z" fill="none"/>
+    <path d="M300,300 L500,300 L500,300 L300,300 Z" fill="none"/>
+  </g>
+  
+  <!-- Developer Text -->
+  <text x="400" y="300" font-family="Arial" font-size="80" fill="white" text-anchor="middle">DEV</text>
+</svg> 
